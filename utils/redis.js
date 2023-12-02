@@ -17,10 +17,17 @@ class RedisClient {
     return await this.client.get(key);
   }
 
-  async set(key, value, expirationInSecond) {
-    await this.client.setex(key, expirationInSecond, value);
+  async set(key, value, duration) {
+    await this.client.set(key, duration, value);
+  }
+
+
+  async del (key) {
+    await this.client.del(key);
+    return true;
   }
 }
+
 
 
 const redisClient = new RedisClient();
